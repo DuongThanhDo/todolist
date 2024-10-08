@@ -79,7 +79,7 @@ function TodoItem({ todo, todoList, index }) {
             setPart(Number(part) + 1);
             // Dùng update để cập nhật giá trị
             update(todoRef, {
-              part: part
+              part: Number(todo.part) + 1
             })
             .then(() => {
               console.log("Cập nhật thành công!");
