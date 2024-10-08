@@ -94,6 +94,12 @@ function TodoItem({ todo, todoList, index }) {
         setIsModalOpenDel(true);
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleOk()
+        }
+    }
+
     return (
         <div className="w-full flex items-center justify-between border-y pl-2 py-2 mb-2 shadow-sm">
             <div className={`grow mr-1 border-r relative ${status && 'text-gray-400 line-through'}`}>
@@ -111,7 +117,7 @@ function TodoItem({ todo, todoList, index }) {
                 <EditOutlined onClick={showModal} className="text-blue-400" />
                 <Modal title="Sửa Todo" okType="default" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                     <div className="flex justify-between, items-center gap-2 mt-4">
-                        <Input value={inputContent} onChange={(e) => setInputContent(e.target.value)} />
+                        <Input onKeyDown={(e) => handleKeyDown(e)} value={inputContent} onChange={(e) => setInputContent(e.target.value)} />
 
                         {todo.type === 'movie' && (
                             <Input

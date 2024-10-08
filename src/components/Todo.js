@@ -26,8 +26,19 @@ function Todo() {
         });
     }, []);
 
+    const removeVietnameseTones = (str) => {
+        return str
+            .normalize('NFD') // Chuẩn hóa chuỗi
+            .replace(/[\u0300-\u036f]/g, '') // Loại bỏ các dấu kết hợp
+            .replace(/đ/g, 'd') // Thay thế chữ đ thành d
+            .replace(/Đ/g, 'D') // Thay thế chữ Đ thành D
+            .toLowerCase(); // Chuyển thành chữ thường
+    };
+
     const handleSearch = (searchValue) => {
-        const todoSearch = todolist.filter((item) => item.content.includes(searchValue));
+        const todoSearch = todolist.filter((item) =>
+            removeVietnameseTones(item.content).includes(removeVietnameseTones(searchValue.trim())),
+        );
         setFilteredList(todoSearch);
     };
 
