@@ -49,7 +49,7 @@ function Todo() {
                 <TodoHeader handleSearch={handleSearch} handleChangeType={handleChangeType} />
                 <TodoList>
                     {filteredList.map((todo, index) => (
-                        <TodoItem key={todo.id} index={index} todoList={todolist} todo={todo} />
+                        <TodoItem key={todo.key} index={index} todoList={todolist} todo={todo} />
                     ))}
                 </TodoList>
                 <TodoFooter />

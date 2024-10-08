@@ -40,6 +40,12 @@ function TodoAdd() {
         setIsType(value)
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleOk()
+        }
+    }
+
     return ( 
         <>            
             <Button type="default" onClick={showModal}>
@@ -58,7 +64,7 @@ function TodoAdd() {
                 />
 
                 <div className="flex justify-between, items-center gap-2 mt-2">
-                    <Input autoFocus value={inputContent} onChange={(e) => setInputContent(e.target.value)} placeholder="Nhập nội dung..."/>
+                    <Input onKeyDown={(e) => handleKeyDown(e)}  autoFocus value={inputContent} onChange={(e) => setInputContent(e.target.value)} placeholder="Nhập nội dung..."/>
 
                     {isType === 'movie' && <Input value={inputPart} onChange={(e) => setInputPart(e.target.value)} type="number" placeholder="Tập số..." style={{ width: 120 }} />}
                 </div>
