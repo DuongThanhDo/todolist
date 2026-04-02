@@ -22,15 +22,20 @@ function TodoAdd() {
       setInputPart('')
     };
   
-    const handleOk = () => {
-        push(ref(database, 'todolist'), {
-            content: inputContent,
-            type: isType,
-            part: isType === 'movie' ? inputPart : 'null',
-            status: false
-        })
-        setIsModalOpen(false);
-    };
+const handleOk = () => {
+    const now = Date.now();
+
+    push(ref(database, 'todolist'), {
+        content: inputContent,
+        type: isType,
+        part: isType === 'movie' ? Number(inputPart) : null,
+        status: false,
+        createdAt: now,
+        updatedAt: now
+    });
+
+    setIsModalOpen(false);
+};
   
     const handleCancel = () => {
       setIsModalOpen(false);

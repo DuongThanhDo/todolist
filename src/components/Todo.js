@@ -3,7 +3,7 @@ import TodoFooter from './TodoFooter';
 import TodoHeader from './TodoHeader';
 import TodoItem from './TodoItem';
 import TodoList from './TodoList';
-import { get, onValue, ref } from 'firebase/database';
+import { onValue, ref } from 'firebase/database';
 import { database } from '../firebase/firebase';
 
 export const TodoContext = createContext();
@@ -15,12 +15,21 @@ function Todo() {
     useEffect(() => {
         onValue(ref(database, 'todolist'), (data) => {
             let getTDL = [];
+
             data.forEach((d) => {
                 getTDL.push({
                     key: d.key,
                     ...d.val(),
                 });
             });
+
+            // ✅ SORT theo mới nhất
+            getTDL.sort((a, b) => {
+                const timeA = a.updatedAt || a.createdAt || 0;
+                const timeB = b.updatedAt || b.createdAt || 0;
+                return timeB - timeA; // mới nhất lên đầu
+            });
+
             setTodolist(getTDL);
             setFilteredList(getTDL);
         });
