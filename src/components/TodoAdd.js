@@ -12,7 +12,7 @@ function TodoAdd() {
 
     const context = useContext(TodoContext)
 
-    let id_ = context.todolist.length === 0 ? 1 : Number(context.todolist[context.todolist.length - 1].id) + 1
+    // let id_ = context.todolist.length === 0 ? 1 : Number(context.todolist[context.todolist.length - 1].id) + 1
 
     console.log(context.todolist);
 

@@ -23,11 +23,10 @@ function Todo() {
                 });
             });
 
-            // ✅ SORT theo mới nhất
             getTDL.sort((a, b) => {
                 const timeA = a.updatedAt || a.createdAt || 0;
                 const timeB = b.updatedAt || b.createdAt || 0;
-                return timeB - timeA; // mới nhất lên đầu
+                return timeB - timeA;
             });
 
             setTodolist(getTDL);
